@@ -13,7 +13,10 @@ Level 10, speed HI, music off, NTSC PRG0. Each record has two files:
 | Name | RNG index | Pills | Kills | Points | Player 2 holds |
 |---|---|---|---|---|---|
 | `nop2_13` | 31 | 23 | 13 | 70,800 | – |
-| `pad_20` | 154 | 23 | 20 | 376,500 | `$75 $5A $58` |
-| `any_23` | 198 | 63 | 23 | 594,600 | `$4F $62 $76 $67 $67 $7E` |
+| `pad_21` | 154 | 59 | 21 | 449,700 | `$75 $5A $58 $70` |
+| `any_24` | 154 | 33 | 24 | 666,600 | `$5C $3E $5D $5D $5A $75 $75` |
+| `pad_20` (earlier) | 154 | 23 | 20 | 376,500 | `$75 $5A $58` |
+| `any_23` (earlier) | 198 | 63 | 23 | 594,600 | `$4F $62 $76 $67 $67 $7E` |
 
-Final scores on screen: 72,300, 377,100 and 595,200 (the combo plus a few small clears earlier on).
+Final scores on screen: 72,300, 450,300, 666,900, 377,100 and 595,200 (the combo plus a few small clears
+earlier on).

@@ -362,9 +362,34 @@ Rejected: 417S, 418S (2004, FCEU), 6052S (0:22.96, documents remove-glitch direc
   values), but g2 = 60: the metasprite glitch fires, with music off and on. Glitch 2 cannot be fixed by player 2,
   so the pad check must also require the glitch 2 timing to be clear (which the record pad 20 has).
 
-### Records so far (level 10, HI, music off; each proven in Mesen, every pill matched, no glitch)
+## Glitch 2 timing and glitch 3 (verified 2026-11-16)
+- **Glitch 2 windows.** `DRM_TRACE=1` in `lua/play_plan.lua` logs CPU cycles of match routine entry/exit, NMIs
+  and metaspriteUpdate ($88F6-$893A). Over 134 match calls (out/trace_k20, trace_k22) the game runs four
+  metasprite updates after each match routine exits, at +1069..+1930, +1839..+2779, +2626..+3615 and
+  +4173..+5744 cycles (earliest start .. latest end; the lengths move with the sprite animation frame). An NMI
+  inside one fires glitch 2. `tools/sprite_check.py` classes each trigger pill clear / maybe / hit; on all 154
+  earlier Mesen tries no "clear" fired glitch 2 and every "hit" did. All 36 pad-legal 21/22s from the old scans
+  are "hit". The engine's `pad=2` adds a rough version (cycle model, predicted NMI well inside a window).
+- **pad=2 search.** Seeds 117-259 (shape 0.25 look 2, beam 2000) gave no pad=2 combo of 20+. A deep re-search of
+  the 19+ seeds (beam 4000, shape 0.15/0.25/0.35/0.5, look 2/3) gave 20 pad-legal 21s on N=154, all "clear";
+  four played in Mesen, all passed. The same runs (unfiltered best) reached 26 on N=154, shape 0.25 look 3.
+- **Glitch 3: virus counter drawn wrong.** The NMI draws the counter (VRAM $233B) when `vu_virusLeft` is set, the
+  tens digit from p1_virusLeft ($0324) and the ones digit from currentP_virusLeft ($A4)
+  (`drmario_prg_visual_nametable.asm` @renderVirusLeft). Every virus kill decrements $A4 and sets the flag; $0324
+  is copied back once a frame (write at $90B6). If the cascade's last draw lands after a kill that crossed a
+  tens boundary but before that frame's copy-back, the screen mixes old tens with new ones (19 left shows as
+  29) and stays wrong until the next kill. RAM and the level-end check are fine; the screen is not. Seen on
+  two any-value 24s (N=154) with g1 = g2 = 0. `play_plan.lua` now reports g3 (counter tiles differ from $0324
+  after the cascade) and `prove.py` counts it as a glitch. All earlier records re-proved with g3 = 0.
+- The N=154 26-kill combo fires glitches (g = 61) in Mesen; three of four 24-kill variants pass g1/g2 and one
+  of them also passes g3 (the record).
+
+### Records so far (level 10, HI, music off; each proven in Mesen, every pill matched, g1 = g2 = g3 = 0)
 | Category | N | Pills | Kills | Points (last pill) | Player 2 held | Files |
 |---|---|---|---|---|---|---|
 | No controller 2 | 31 | 23 | 13 (cap) | 70,800 | - | best/nop2_13.plan, videos/nop2_13.mp4 |
-| Player 2, pad-legal | 154 | 23 | 20 | 376,500 | $75 $5A $58 | best/pad_20.plan, videos/pad_20.mp4 |
-| Player 2, any value | 198 | 63 | 23 | 594,600 | $4F $62 $76 $67 $67 $7E | best/any_23.plan, videos/any_23.mp4 |
+| Player 2, pad-legal | 154 | 59 | 21 | 449,700 | $75 $5A $58 $70 | best/pad_21.plan, videos/pad_21.mp4 |
+| Player 2, any value | 154 | 33 | 24 | 666,600 | $5C $3E $5D $5D $5A $75 $75 | best/any_24.plan, videos/any_24.mp4 |
+
+Earlier records, kept in `best/` and `videos/`: pad 20 (N=154, 23 pills, 376,500, `pad_20`) and any 23
+(N=198, 63 pills, 594,600, `any_23`).

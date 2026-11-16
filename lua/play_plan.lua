@@ -7,7 +7,9 @@
 --      DRM_PLAN (file: one "rot x" line per pill), DRM_OUT (jsonl, one line per pill),
 --      DRM_INPUTS (input log, "frame p1 p2" hex per line).
 -- Glitches are not repaired, only reported per pill: g1 = $49 changed inside a clear loop, g2 = the
--- metasprite pointer (tmp48) changed inside metaspriteUpdate.
+-- metasprite pointer (tmp48) changed inside metaspriteUpdate, g3 = the virus counter on screen (VRAM $233B)
+-- differs from viruses left ($0324) once the cascade is over (the NMI drew the tens digit from $0324 and the
+-- ones from $A4 between a kill and the frame's copy-back).
 
 local M = emu.memType.nesDebug
 local function rd(a) return emu.read(a, M) end
@@ -93,11 +95,14 @@ emu.addMemoryCallback(function(addr, value)
   end
 end, emu.callbackType.write, 0x0317)
 
+local P = emu.memType.nesPpuDebug or emu.memType.nesPpuMemory
 local function report(final)
   local p = plan[pill]
-  out:write(string.format('{"pill":%d,"want_rot":%d,"want_x":%d,"rot":%d,"x":%d,"lock":"%s","after":"%s","dscore":%d,"score":%d,"frame":%d,"g1":%d,"g2":%d,"p2frames":%d,"p2vals":"%s"%s}\n',
+  local v = rd(0x0324)
+  local g3 = (emu.read(0x233B, P) ~= v >> 4 or emu.read(0x233C, P) ~= v & 15) and 1 or 0
+  out:write(string.format('{"pill":%d,"want_rot":%d,"want_x":%d,"rot":%d,"x":%d,"lock":"%s","after":"%s","dscore":%d,"score":%d,"frame":%d,"g1":%d,"g2":%d,"g3":%d,"p2frames":%d,"p2vals":"%s"%s}\n',
     pill - 1, p.rot, p.x, rd(0x0325), rd(0x0305), lock_field or "", final, score() - lock_score, score(), frame,
-    g1, g2, p2frames, table.concat(p2vals, " "), trace and (',"ev":"' .. table.concat(ev, " ") .. '"') or ""))
+    g1, g2, g3, p2frames, table.concat(p2vals, " "), trace and (',"ev":"' .. table.concat(ev, " ") .. '"') or ""))
   ev = {}
   out:flush()
   g1, g2, p2frames, p2vals = 0, 0, 0, {}

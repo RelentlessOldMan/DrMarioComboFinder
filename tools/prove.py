@@ -1,6 +1,7 @@
 """Prove a combo in Mesen: play the plan with lua/play_plan.lua, then check every pill against drm/plan.py
 (landing, field after the cascade, score) and that no glitch fired (g1: $49 changed inside a clear loop,
-g2: metasprite pointer changed). Each run takes about a minute.
+g2: metasprite pointer changed,
+g3: virus counter drawn wrong). Each run takes about a minute.
 Usage: prove.py N level "r,x r,x ..." name [speed=2] [music=2] [p2=0]
 Writes plans/<name>.txt, out/<name>.jsonl, out/<name>.inputs; prints a JSON summary line."""
 import json, os, subprocess, sys
@@ -37,7 +38,7 @@ def prove(n, level, steps, name, speed=2, music=2, p2=0, timeout=300):
             break
         mem, kills, _ = plan.play(mem, rot, x, pid)
         good = hx(d["lock"]) == lock[0][:128] and hx(d["after"]) == mem[:128] and d["dscore"] == board.combo_score(kills, speed)
-        res["glitch"] += d["g1"] + d["g2"]
+        res["glitch"] += d["g1"] + d["g2"] + d.get("g3", 0)
         if not good:
             res["first_bad"] = i
             break

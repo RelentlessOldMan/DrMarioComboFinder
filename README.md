@@ -2,21 +2,22 @@
 
 **Finds the biggest single-pill combos in NES Dr. Mario that don't break the game: searched outside the game, proven in Mesen 2.**
 
-![23-kill combo, 594,600 points](docs/img/any_23_combo.gif)
+![24-kill combo, 666,600 points](docs/img/any_24_combo.gif)
 
 ## Why
 
 In NES Dr. Mario, one pill can set off a cascade that clears virus after virus, and each kill pays a
 multiplier that depends on how many came before it in the combo (up to ×256). Long cascades run into two bugs: the frame's NMI can interrupt the game while it
 is clearing a match, and then either the game's `fieldPos_last` (`$49`) gets player 2's buttons written into
-it, or a metasprite pointer gets changed. Either one can wreck the board or freeze the game. This project
-looks for the biggest combos that **don't** set either bug off, by score and by number of viruses, and
+it, or a metasprite pointer gets changed. Either one can wreck the board or freeze the game. A third, milder
+one draws the virus counter wrong (old tens digit, new ones digit) until the next kill. This project
+looks for the biggest combos that **don't** set any of them off, by score and by number of viruses, and
 proves each one in an emulator.
 
 ## The records
 
 All on level 10, speed HI, music off, NTSC PRG0 ROM. Each was played in Mesen 2 from power-on with every
-pill landing where the plan says, the board matching the simulator after every pill, and neither glitch
+pill landing where the plan says, the board matching the simulator after every pill, and no glitch
 firing. "Kills" are the viruses that one last pill clears; the points are that pill's.
 
 The first bug can be fixed from the second controller: if player 2 holds the value the game is about to
@@ -25,8 +26,8 @@ need, the bad write changes nothing. Whether that counts is up to you, so there 
 | Category | Seed (RNG index) | Pills | Kills | Points | Player 2 holds | Plan | Video |
 |---|---|---|---|---|---|---|---|
 | No controller 2 | 31 | 23 | **13** | 70,800 | – | [`best/nop2_13.plan`](best/nop2_13.plan) | [MP4](videos/nop2_13.mp4) |
-| Player 2, standard pad only | 154 | 23 | **20** | 376,500 | `$75 $5A $58` | [`best/pad_20.plan`](best/pad_20.plan) | [MP4](videos/pad_20.mp4) |
-| Player 2, any value | 198 | 63 | **23** | 594,600 | `$4F $62 $76 $67 $67 $7E` | [`best/any_23.plan`](best/any_23.plan) | [MP4](videos/any_23.mp4) |
+| Player 2, standard pad only | 154 | 59 | **21** | 449,700 | `$75 $5A $58 $70` | [`best/pad_21.plan`](best/pad_21.plan) | [MP4](videos/pad_21.mp4) |
+| Player 2, any value | 154 | 33 | **24** | 666,600 | `$5C $3E $5D $5D $5A $75 $75` | [`best/any_24.plan`](best/any_24.plan) | [MP4](videos/any_24.mp4) |
 
 Without a second controller, 13 kills is the hard cap: the 14th kill pays ×256, and adding up that score
 takes so long that an NMI is sure to land in the middle of the clear.
@@ -40,19 +41,21 @@ takes so long that an NMI is sure to land in the middle of the clear.
 
 ![13-kill combo](docs/img/nop2_13_combo.gif)
 
-### Player 2, standard pad: 20 kills
+### Player 2, standard pad: 21 kills
 
 | Just before the last pill lands | After the cascade |
 |---|---|
-| ![before](docs/img/pad_20_before.png) | ![after](docs/img/pad_20_after.png) |
+| ![before](docs/img/pad_21_before.png) | ![after](docs/img/pad_21_after.png) |
 
-![20-kill combo](docs/img/pad_20_combo.gif)
+![21-kill combo](docs/img/pad_21_combo.gif)
 
-### Player 2, any value: 23 kills
+### Player 2, any value: 24 kills
 
 | Just before the last pill lands | After the cascade |
 |---|---|
-| ![before](docs/img/any_23_before.png) | ![after](docs/img/any_23_after.png) |
+| ![before](docs/img/any_24_before.png) | ![after](docs/img/any_24_after.png) |
+
+Earlier records (pad 20, any 23) are still in [`best/`](best/README.md) and `videos/`.
 
 The GIFs are cut from the full videos, which show the whole game from power-on. Plan and input-log formats
 are in [`best/`](best/README.md).
@@ -71,7 +74,7 @@ on the PATH.
     python tools/try_many.py out/batch.jsonl mybatch 8  # play the best candidates in Mesen
     powershell tools\make_video.ps1 out\mybatch_0.inputs out\mybatch_0.mp4
 
-To watch a record, replay its input log: `DRM_INPUTS=best/any_23.inputs` and run
+To watch a record, replay its input log: `DRM_INPUTS=best/any_24.inputs` and run
 `mesen/Mesen.exe --testRunner lua/replay.lua drmario.nes`, or make a video with `tools/make_video.ps1`.
 
 ## How it works
@@ -83,12 +86,13 @@ To watch a record, replay its input log: `DRM_INPUTS=best/any_23.inputs` and run
    The search drops it, resolves the board, and scores it. A beam search (`engine/dm.cpp`, C++ with OpenMP)
    builds up a board over dozens of pills so that one last pill sets off the biggest cascade it can.
 3. **Glitch timing.** `drm/glitch.py` runs the game's own match routines on a 6502 core (`drm/cpu6502.py`)
-   with the real RAM, and works out whether the frame's NMI can land inside a clear loop. For the
+   with the real RAM, and works out whether the frame's NMI can land inside a clear loop
+   (`tools/sprite_check.py` does the same for the metasprite updates after it). For the
    player-2 categories it also works out which value player 2 must hold, and whether a standard pad can
    hold it.
 4. **Mesen is the judge.** `lua/play_plan.lua` starts the level at the chosen RNG index, steers each pill to
    its spot and logs every frame's inputs. `tools/prove.py` checks each pill against the model and counts
-   both glitches. Only combos that pass go on the board. `lua/replay.lua` replays the log for the video.
+   all three glitches. Only combos that pass go on the board. `lua/replay.lua` replays the log for the video.
 
 Everything learned about the game along the way (RNG, generation, scoring, RAM map, the two glitches, the
 timing model) is in [`RESEARCH.md`](RESEARCH.md).

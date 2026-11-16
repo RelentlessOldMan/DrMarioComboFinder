@@ -30,14 +30,15 @@ able to carry on the work. So:
 - Big combos are dangerous because of two bugs (details in `RESEARCH.md`): **glitch 1**, an NMI during a
   clear loop writes player 2's buttons into `$49` (fieldPos_last); **glitch 2**, the metasprite pointer
   `tmp48` changes. Glitch 1 can be fixed by player 2 holding the right value; glitch 2 cannot and must be
-  avoided by timing.
+  avoided by timing. **Glitch 3**: the virus counter is drawn wrong (old tens digit, new ones digit) after the
+  cascade; it is a visible fault, so it also disqualifies a combo.
 - The user never chose a player-2 rule, so there are **three leaderboards**: no controller 2 (hard cap
   13 kills), player 2 holding standard-pad values only, player 2 holding any value.
 - **Search by placement, not by playing.** The search picks each pill's final spot and orientation, drops
   it, resolves clears and cascades, and scores. It never simulates frames, gravity or button presses;
   inputs are made only when a winner is played in Mesen.
 - **Mesen is the judge.** A combo counts only when `tools/prove.py` plays it in Mesen with every pill
-  matching the simulator and g1 = g2 = 0. Then record a video and check its final frame.
+  matching the simulator and g1 = g2 = g3 = 0. Then record a video and check its final frame.
 - **No ROMs or emulator in the repo, ever.** Never download a ROM. `*.nes`, `ref/` (disassemblies) and
   `mesen/` are gitignored; users bring their own.
 
