@@ -10,7 +10,7 @@
 //   dm play n=N level=L plan="r,x r,x ..."   kills per pill and the final board
 //   dm search level=L n0=A n1=B depth=D beam=W [min=K per=P look=1 any=0 shape=0.05 waste=2 height=1 first=1]
 //                                stdout: one JSON line per recorded combo
-//                                pad=1: record only combos that pass pad_ok
+//                                pad=1: record only combos that pass pad_ok; pad=2: also sprite_ok (glitch 2)
 #include <algorithm>
 #include <chrono>
 #include <cstdint>
@@ -228,7 +228,21 @@ static const int MULT[30] = {1, 2, 4, 8, 16, 32, 32, 32, 32, 32, 32, 10, 3, 256,
                              244, 242, 241, 240, 241, 242, 244, 248, 252, 256};
 static const double PAD_LONG = 20000;
 static bool pad_legal(int v) { return (v & 3) != 3 && (v & 12) != 12; }
-static bool pad_ok(const u8* board, int pid, int rot, int x) {
+
+// Glitch 2 (tools/sprite_check.py): after a match call exits, four metasprite updates run 1069..5744 cycles
+// later (gap 3615..4173); an NMI inside one breaks their pointer. Calls start a frame after an NMI
+// (silent: NMI j at about j*29780.5 - 5840 - (j-1)*2000). Reject a call whose first NMI after its exit is
+// predicted well inside a window; the cycle model is too rough for the edges, so those are left to Python.
+static bool sprite_ok(double cyc) {
+    for (int j = 1; j < 8; j++) {
+        double nmi = j * 29780.5 - 5840 - (j - 1) * 2000;
+        if (nmi <= cyc) continue;
+        double off = nmi - cyc;
+        return !((off > 1300 && off < 3400) || (off > 4400 && off < 5500));
+    }
+    return true;
+}
+static bool pad_ok(const u8* board, int pid, int rot, int x, bool sprites) {
     u8 m[256];
     memcpy(m, board, 128);
     memset(m + 128, EMPTY, 128);
@@ -246,6 +260,7 @@ static bool pad_ok(const u8* board, int pid, int rot, int x) {
             for (int i = k; i < k + n; i++) sm += i < 30 ? MULT[i] : 256;
             double cyc = 5854.4 + 93.8 * sm + 153.8 * n + 541.9 * ends[0];
             k += n;
+            if (sprites && !sprite_ok(cyc)) return false;
             if (cyc > PAD_LONG)
                 for (int i = 1; i <= ends[0]; i++) if (!pad_legal(ends[i])) return false;
         }
@@ -383,7 +398,7 @@ static void search(const Args& a) {
                 const State& s = states[si];
                 for (const Kid& c0 : out[si]) {
                         int k = c0.k, rot = c0.rot, x = c0.x;
-                        if (k >= minrec && k >= best - 2 && count[k] < per && (!pad || pad_ok(s.m, pid, rot, x))) {
+                        if (k >= minrec && k >= best - 2 && count[k] < per && (!pad || pad_ok(s.m, pid, rot, x, pad >= 2))) {
                             count[k]++;
                             std::vector<std::pair<int, int>> plan{{rot, x}};
                             for (int id = s.node, dd = d - 1; id >= 0; id = layers[dd].at(id).parent, dd--)

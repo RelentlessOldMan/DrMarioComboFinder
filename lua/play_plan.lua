@@ -75,6 +75,17 @@ local ms_hi
 on(0x8906, function() ms_hi = rd(0x48) end)
 on(0x890A, function() if ms_hi and rd(0x48) ~= ms_hi then g2 = g2 + 1 end end)
 
+-- DRM_TRACE=1: log CPU cycles of match routines (H/h, V/v entry/exit), NMIs (N), metasprite updates (M/m)
+-- and glitch 2 hits (X) for every pill, as "ev" in the jsonl (timing_probe.lua's letters)
+local trace, ev = os.getenv("DRM_TRACE"), {}
+if trace then
+  local function cyc() return emu.getState()["cpu.cycleCount"] end
+  local function mark(t) return function() if lock_field then ev[#ev + 1] = t .. cyc() end end end
+  on(0x91FB, mark("H")); on(0x92DA, mark("h")); on(0x9469, mark("V")); on(0x952F, mark("v"))
+  on(0x8005, mark("N")); on(0x88F6, mark("M")); on(0x893A, mark("m"))
+  on(0x890A, function() if lock_field and ms_hi and rd(0x48) ~= ms_hi then ev[#ev + 1] = "X" .. cyc() end end)
+end
+
 emu.addMemoryCallback(function(addr, value)
   if phase ~= "play" then return end
   if value == 1 and not lock_field then
@@ -84,9 +95,10 @@ end, emu.callbackType.write, 0x0317)
 
 local function report(final)
   local p = plan[pill]
-  out:write(string.format('{"pill":%d,"want_rot":%d,"want_x":%d,"rot":%d,"x":%d,"lock":"%s","after":"%s","dscore":%d,"score":%d,"frame":%d,"g1":%d,"g2":%d,"p2frames":%d,"p2vals":"%s"}\n',
+  out:write(string.format('{"pill":%d,"want_rot":%d,"want_x":%d,"rot":%d,"x":%d,"lock":"%s","after":"%s","dscore":%d,"score":%d,"frame":%d,"g1":%d,"g2":%d,"p2frames":%d,"p2vals":"%s"%s}\n',
     pill - 1, p.rot, p.x, rd(0x0325), rd(0x0305), lock_field or "", final, score() - lock_score, score(), frame,
-    g1, g2, p2frames, table.concat(p2vals, " ")))
+    g1, g2, p2frames, table.concat(p2vals, " "), trace and (',"ev":"' .. table.concat(ev, " ") .. '"') or ""))
+  ev = {}
   out:flush()
   g1, g2, p2frames, p2vals = 0, 0, 0, {}
 end

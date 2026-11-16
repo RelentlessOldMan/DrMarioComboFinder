@@ -5,8 +5,8 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
 ## Next
 
 1. **Pad 21+:** the exact pad check (`tools/pad_exact.py`) found pad-legal 21 and 22 kill combos on N=154,
-   but in Mesen (2026-11-16) both fire glitch 2 (g2 = 60). Add a glitch 2 timing filter next to the pad
-   check, then re-screen the existing scans and search again with it on.
+   but in Mesen (2026-11-16) both fire glitch 2 (g2 = 60). `tools/sprite_check.py` now flags all 36 of the
+   known pad-legal 21/22s as sure glitch 2 hits; a search with the engine's `pad=2` filter is running.
 1. **Any 24+:** re-search the best seeds (N=154, N=198 and the other 21+ seeds in 117-259) with other
    settings (beam 4000, shape 0.35 look 3); that beat scanning new seeds so far.
 1. **Other levels and speeds:** only level 10 HI has been searched hard. Level 7 gave nothing and level 16
@@ -31,6 +31,9 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
   - player 2 any value: 23 kills, 594,600 points, N=198 (2026-11-14).
 - **Exact pad check** (2026-11-15, `tools/pad_exact.py`): agreed with Mesen on 103/103 passing combos
   for glitch 1. It does not check glitch 2.
+- **Glitch 2 check** (2026-11-16, `tools/sprite_check.py`, engine `pad=2`): four metasprite windows after
+  each match call, measured with `DRM_TRACE=1` in `lua/play_plan.lua`. Classes each pill clear, maybe or
+  hit; on 154 earlier Mesen tries no "clear" fired glitch 2 and every "hit" did.
 - **Repo and versioning** (2026-11-16): `VERSION` (YYYY.M.D.N), bumped by `engine/build.bat` and printed by
   `dm.exe version`.
 
