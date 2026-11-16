@@ -1,0 +1,26 @@
+# Nintendo ROMs, disassemblies and the emulator - never commit (bring your own)
+*.nes
+ref/
+mesen/
+
+# Working output: scans, Mesen tries, raw video frames, scratch plans (records are copied to best/ and videos/)
+out/
+plans/
+
+# Engine build output
+engine/dm.exe
+engine/*.obj
+engine/build.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
