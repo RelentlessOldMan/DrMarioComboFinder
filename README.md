@@ -2,7 +2,7 @@
 
 **Finds the biggest single-pill combos in NES Dr. Mario that don't break the game: searched outside the game, proven in Mesen 2.**
 
-![24-kill combo, 666,600 points](docs/img/any_24_combo.gif)
+![25-kill combo, 738,900 points](docs/img/any_25_combo.gif)
 
 ## Why
 
@@ -27,7 +27,7 @@ need, the bad write changes nothing. Whether that counts is up to you, so there 
 |---|---|---|---|---|---|---|---|
 | No controller 2 | 31 | 23 | **13** | 70,800 | – | [`best/nop2_13.plan`](best/nop2_13.plan) | [MP4](videos/nop2_13.mp4) |
 | Player 2, standard pad only | 154 | 59 | **21** | 449,700 | `$75 $5A $58 $70` | [`best/pad_21.plan`](best/pad_21.plan) | [MP4](videos/pad_21.mp4) |
-| Player 2, any value | 154 | 33 | **24** | 666,600 | `$5C $3E $5D $5D $5A $75 $75` | [`best/any_24.plan`](best/any_24.plan) | [MP4](videos/any_24.mp4) |
+| Player 2, any value | 154 | 48 | **25** | 738,900 | `$5D $44 $5E $5E $5A $85 $85 $76 $76` | [`best/any_25.plan`](best/any_25.plan) | [MP4](videos/any_25.mp4) |
 
 Without a second controller, 13 kills is the hard cap: the 14th kill pays ×256, and adding up that score
 takes so long that an NMI is sure to land in the middle of the clear.
@@ -49,13 +49,13 @@ takes so long that an NMI is sure to land in the middle of the clear.
 
 ![21-kill combo](docs/img/pad_21_combo.gif)
 
-### Player 2, any value: 24 kills
+### Player 2, any value: 25 kills
 
 | Just before the last pill lands | After the cascade |
 |---|---|
-| ![before](docs/img/any_24_before.png) | ![after](docs/img/any_24_after.png) |
+| ![before](docs/img/any_25_before.png) | ![after](docs/img/any_25_after.png) |
 
-Earlier records (pad 20, any 23) are still in [`best/`](best/README.md) and `videos/`.
+Earlier records (pad 20, any 23, any 24) are still in [`best/`](best/README.md) and `videos/`.
 
 The GIFs are cut from the full videos, which show the whole game from power-on. Plan and input-log formats
 are in [`best/`](best/README.md).
@@ -74,7 +74,7 @@ on the PATH.
     python tools/try_many.py out/batch.jsonl mybatch 8  # play the best candidates in Mesen
     powershell tools\make_video.ps1 out\mybatch_0.inputs out\mybatch_0.mp4
 
-To watch a record, replay its input log: `DRM_INPUTS=best/any_24.inputs` and run
+To watch a record, replay its input log: `DRM_INPUTS=best/any_25.inputs` and run
 `mesen/Mesen.exe --testRunner lua/replay.lua drmario.nes`, or make a video with `tools/make_video.ps1`.
 
 ## How it works

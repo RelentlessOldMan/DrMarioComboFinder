@@ -14,9 +14,10 @@ Level 10, speed HI, music off, NTSC PRG0. Each record has two files:
 |---|---|---|---|---|---|
 | `nop2_13` | 31 | 23 | 13 | 70,800 | – |
 | `pad_21` | 154 | 59 | 21 | 449,700 | `$75 $5A $58 $70` |
-| `any_24` | 154 | 33 | 24 | 666,600 | `$5C $3E $5D $5D $5A $75 $75` |
+| `any_25` | 154 | 48 | 25 | 738,900 | `$5D $44 $5E $5E $5A $85 $85 $76 $76` |
+| `any_24` (earlier) | 154 | 33 | 24 | 666,600 | `$5C $3E $5D $5D $5A $75 $75` |
 | `pad_20` (earlier) | 154 | 23 | 20 | 376,500 | `$75 $5A $58` |
 | `any_23` (earlier) | 198 | 63 | 23 | 594,600 | `$4F $62 $76 $67 $67 $7E` |
 
-Final scores on screen: 72,300, 450,300, 666,900, 377,100 and 595,200 (the combo plus a few small clears
+Final scores on screen: 72,300, 450,300, 740,700, 666,900, 377,100 and 595,200 (the combo plus a few small clears
 earlier on).

@@ -383,13 +383,17 @@ Rejected: 417S, 418S (2004, FCEU), 6052S (0:22.96, documents remove-glitch direc
   after the cascade) and `prove.py` counts it as a glitch. All earlier records re-proved with g3 = 0.
 - The N=154 26-kill combo fires glitches (g = 61) in Mesen; three of four 24-kill variants pass g1/g2 and one
   of them also passes g3 (the record).
+- **Any 25.** Re-searching N=154 (beam 4000/6000/8000, shape 0.2/0.25/0.3, look 3/4; 10-25 s each) gave three 26s
+  and two 25s. `tools/pad_exact.py ... any=1` (one chain per NMI, plus the sprite check) called both 26s sure
+  glitch 2 hits and both 25s clear; on the five earlier any tries it agreed with Mesen's g2 every time. Both 25s
+  passed in Mesen (g1 = g2 = g3 = 0): 25 kills, 738,900 (beam 8000, shape 0.3, look 3).
 
 ### Records so far (level 10, HI, music off; each proven in Mesen, every pill matched, g1 = g2 = g3 = 0)
 | Category | N | Pills | Kills | Points (last pill) | Player 2 held | Files |
 |---|---|---|---|---|---|---|
 | No controller 2 | 31 | 23 | 13 (cap) | 70,800 | - | best/nop2_13.plan, videos/nop2_13.mp4 |
 | Player 2, pad-legal | 154 | 59 | 21 | 449,700 | $75 $5A $58 $70 | best/pad_21.plan, videos/pad_21.mp4 |
-| Player 2, any value | 154 | 33 | 24 | 666,600 | $5C $3E $5D $5D $5A $75 $75 | best/any_24.plan, videos/any_24.mp4 |
+| Player 2, any value | 154 | 48 | 25 | 738,900 | $5D $44 $5E $5E $5A $85 $85 $76 $76 | best/any_25.plan, videos/any_25.mp4 |
 
 Earlier records, kept in `best/` and `videos/`: pad 20 (N=154, 23 pills, 376,500, `pad_20`) and any 23
-(N=198, 63 pills, 594,600, `any_23`).
+(N=198, 63 pills, 594,600, `any_23`), any 24 (N=154, 33 pills, 666,600, `any_24`).

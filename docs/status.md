@@ -6,9 +6,8 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
 
 1. **Pad 22+:** the deep `pad=2` re-search (beam 4000, several shape/look settings) gave pad 21 on N=154.
    Try more settings and seeds 1-116 and 260+ with `pad=2`, screen with `pad_exact.py` + `sprite_check.py`.
-1. **Any 25+:** N=154 (shape 0.25 look 3, beam 4000) reached 26, but it fires glitches. Re-search N=154
-   around those settings for more 25/26 variants and try them in Mesen; a sprite/counter-aware filter for
-   the any category would help.
+1. **Any 26+:** N=154 reached 26 three times (beam 4000-8000), all sure glitch 2 hits. Search other seeds
+   (N=198, 152, the 19+ seeds) at beam 8000 with several shapes, screen with `pad_exact.py ... any=1`.
 1. **Other levels and speeds:** only level 10 HI has been searched hard. Level 7 gave nothing and level 16
    reached 20.
 
@@ -28,7 +27,7 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
 - **Records** (level 10, HI, music off; proven in Mesen, videos checked):
   - no controller 2: 13 kills, 70,800 points, N=31 (2026-11-14);
   - player 2 pad values: 21 kills, 449,700 points, N=154 (2026-11-16; was 20 / 376,500);
-  - player 2 any value: 24 kills, 666,600 points, N=154 (2026-11-16; was 23 / 594,600).
+  - player 2 any value: 25 kills, 738,900 points, N=154 (2026-11-16; was 24 / 666,600, before that 23 / 594,600).
 - **Exact pad check** (2026-11-15, `tools/pad_exact.py`): agreed with Mesen on 103/103 passing combos
   for glitch 1. It does not check glitch 2.
 - **Glitch 2 check** (2026-11-16, `tools/sprite_check.py`, engine `pad=2`): four metasprite windows after
@@ -36,6 +35,7 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
   hit; on 154 earlier Mesen tries no "clear" fired glitch 2 and every "hit" did.
 - **Glitch 3 check** (2026-11-16, `lua/play_plan.lua`, `tools/prove.py`): after each pill, the virus
   counter tiles on screen must equal `$0324`. All records re-proved with g3 = 0.
+- **Any screen** (2026-11-16, `tools/pad_exact.py ... any=1`): one chain per NMI plus the sprite check.
 - **Repo and versioning** (2026-11-16): `VERSION` (YYYY.M.D.N), bumped by `engine/build.bat` and printed by
   `dm.exe version`.
 
