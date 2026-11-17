@@ -26,7 +26,7 @@ need, the bad write changes nothing. Whether that counts is up to you, so there 
 | Category | Seed (RNG index) | Pills | Kills | Points | Player 2 holds | Plan | Video |
 |---|---|---|---|---|---|---|---|
 | No controller 2 | 31 | 23 | **13** | 70,800 | – | [`best/nop2_13.plan`](best/nop2_13.plan) | [MP4](videos/nop2_13.mp4) |
-| Player 2, standard pad only | 154 | 59 | **21** | 449,700 | `$75 $5A $58 $70` | [`best/pad_21.plan`](best/pad_21.plan) | [MP4](videos/pad_21.mp4) |
+| Player 2, standard pad only | 154 | 49 | **23** | 594,600 | `$75 $44 $85 $76` | [`best/pad_23.plan`](best/pad_23.plan) | [MP4](videos/pad_23.mp4) |
 | Player 2, any value | 154 | 48 | **25** | 738,900 | `$5D $44 $5E $5E $5A $85 $85 $76 $76` | [`best/any_25.plan`](best/any_25.plan) | [MP4](videos/any_25.mp4) |
 
 Without a second controller, 13 kills is the hard cap: the 14th kill pays ×256, and adding up that score
@@ -41,13 +41,13 @@ takes so long that an NMI is sure to land in the middle of the clear.
 
 ![13-kill combo](docs/img/nop2_13_combo.gif)
 
-### Player 2, standard pad: 21 kills
+### Player 2, standard pad: 23 kills
 
 | Just before the last pill lands | After the cascade |
 |---|---|
-| ![before](docs/img/pad_21_before.png) | ![after](docs/img/pad_21_after.png) |
+| ![before](docs/img/pad_23_before.png) | ![after](docs/img/pad_23_after.png) |
 
-![21-kill combo](docs/img/pad_21_combo.gif)
+![23-kill combo](docs/img/pad_23_combo.gif)
 
 ### Player 2, any value: 25 kills
 
@@ -55,7 +55,7 @@ takes so long that an NMI is sure to land in the middle of the clear.
 |---|---|
 | ![before](docs/img/any_25_before.png) | ![after](docs/img/any_25_after.png) |
 
-Earlier records (pad 20, any 23, any 24) are still in [`best/`](best/README.md) and `videos/`.
+Earlier records (pad 20, pad 21, any 23, any 24) are still in [`best/`](best/README.md) and `videos/`.
 
 The GIFs are cut from the full videos, which show the whole game from power-on. Plan and input-log formats
 are in [`best/`](best/README.md).

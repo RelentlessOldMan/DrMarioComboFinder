@@ -387,13 +387,19 @@ Rejected: 417S, 418S (2004, FCEU), 6052S (0:22.96, documents remove-glitch direc
   and two 25s. `tools/pad_exact.py ... any=1` (one chain per NMI, plus the sprite check) called both 26s sure
   glitch 2 hits and both 25s clear; on the five earlier any tries it agreed with Mesen's g2 every time. Both 25s
   passed in Mesen (g1 = g2 = g3 = 0): 25 kills, 738,900 (beam 8000, shape 0.3, look 3).
+- **Pad 23.** A plain (no `pad=`) sweep of the eight 19+ seeds at beam 8000/12000, shape 0.15-0.35, look 3/4
+  (160 searches, 10-40 s each) gave 2,800 combos of 22+ kills; `pad_exact.py` passed 14 (all N=154, 23 kills,
+  sprite check clear, plus 132 pad 22s on N=152 that were not needed). All four tried passed in Mesen with
+  g1 = g2 = g3 = 0: pad 23, 594,600. The `pad=2` engine filter is stricter than the exact check and missed it,
+  so a wide plain search plus the exact screen is the better route. The any screen of the same sweep found no
+  new 25+: the 26s (N=154) and 25s (N=151) are all sure glitch 2 hits.
 
 ### Records so far (level 10, HI, music off; each proven in Mesen, every pill matched, g1 = g2 = g3 = 0)
 | Category | N | Pills | Kills | Points (last pill) | Player 2 held | Files |
 |---|---|---|---|---|---|---|
 | No controller 2 | 31 | 23 | 13 (cap) | 70,800 | - | best/nop2_13.plan, videos/nop2_13.mp4 |
-| Player 2, pad-legal | 154 | 59 | 21 | 449,700 | $75 $5A $58 $70 | best/pad_21.plan, videos/pad_21.mp4 |
+| Player 2, pad-legal | 154 | 49 | 23 | 594,600 | $75 $44 $85 $76 | best/pad_23.plan, videos/pad_23.mp4 |
 | Player 2, any value | 154 | 48 | 25 | 738,900 | $5D $44 $5E $5E $5A $85 $85 $76 $76 | best/any_25.plan, videos/any_25.mp4 |
 
-Earlier records, kept in `best/` and `videos/`: pad 20 (N=154, 23 pills, 376,500, `pad_20`) and any 23
+Earlier records, kept in `best/` and `videos/`: pad 20 (N=154, 23 pills, 376,500, `pad_20`), pad 21 (N=154, 59 pills, 449,700, `pad_21`), any 23
 (N=198, 63 pills, 594,600, `any_23`), any 24 (N=154, 33 pills, 666,600, `any_24`).

@@ -75,8 +75,8 @@ other settings, screen, prove in Mesen), recording each new record and updating 
     python tools/prove.py N level "r,x r,x ..." name p2=1
     powershell tools\make_video.ps1 out\name.inputs out\name.mp4
 
-Job sizes: `check_engine.py` about 20 s. A `dm.exe search` at depth 80, beam 2000 takes minutes per seed
-and uses all cores; beam 4000 roughly doubles that. One Mesen proof (`prove.py`) takes about a
+Job sizes: `check_engine.py` about 20 s. A `dm.exe search` at depth 80 takes about 10 s per seed at beam
+2000 and 20-40 s at beam 8000-12000, using all cores. `pad_exact.py` screens about 25 candidates a minute. One Mesen proof (`prove.py`) takes about a
 minute on one core; a video about two minutes plus a large temporary raw-frame file (deleted after).
 
 ## Where things are
