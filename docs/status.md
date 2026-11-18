@@ -6,8 +6,11 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
 
 1. **Pad 24+:** a plain beam 8000/12000 sweep of the 19+ seeds, screened with `pad_exact.py`, gave pad 23.
    Run the same sweep on more seeds (the 18s, 1-116, 260+) and at beam 16000 on N=154.
-1. **Any 26+:** N=154 reached 26 three times (beam 4000-8000), all sure glitch 2 hits. Search other seeds
-   (N=198, 152, the 19+ seeds) at beam 8000 with several shapes, screen with `pad_exact.py ... any=1`.
+1. **Any 27+ / pad 24+ via speed and frame phase:** a 26 that is a sure glitch 2 hit at HI passed at LOW
+   (fewer score cycles), in one of five plans (animation phase). Re-screen all 24+ candidates at speeds 0 and 1,
+   and add an optional wait before the trigger pill to `play_plan.lua` so "maybe" combos can be retried at
+   several phases. The engine searches only score HI; add speed to the search and screens.
+1. **Seeds 196-260** at beam 8000 (the 1-195 sweep found nothing above 22 off N=154).
 1. **Other levels and speeds:** only level 10 HI has been searched hard. Level 7 gave nothing and level 16
    reached 20.
 
@@ -27,6 +30,7 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
 - **Records** (level 10, HI, music off; proven in Mesen, videos checked):
   - no controller 2: 13 kills, 70,800 points, N=31 (2026-11-14);
   - player 2 pad values: 23 kills, 594,600 points, N=154 (2026-11-16; was 21 / 449,700, before that 20 / 376,500);
+  - player 2 any value, most kills: 26 kills at speed LOW, 270,500 points, N=154 (2026-11-17).
   - player 2 any value: 25 kills, 738,900 points, N=154 (2026-11-16; was 24 / 666,600, before that 23 / 594,600).
 - **Exact pad check** (2026-11-15, `tools/pad_exact.py`): agreed with Mesen on 103/103 passing combos
   for glitch 1. It does not check glitch 2.

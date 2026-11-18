@@ -393,6 +393,16 @@ Rejected: 417S, 418S (2004, FCEU), 6052S (0:22.96, documents remove-glitch direc
   g1 = g2 = g3 = 0: pad 23, 594,600. The `pad=2` engine filter is stricter than the exact check and missed it,
   so a wide plain search plus the exact screen is the better route. The any screen of the same sweep found no
   new 25+: the 26s (N=154) and 25s (N=151) are all sure glitch 2 hits.
+- **Nudging does not work, speed does.** `tools/nudge.py` tries every one-pill change of a plan (later pills
+  fixed, same earlier clears): on the five N=154 26s none of the 572 variants per plan kept 26 kills; the boards
+  are packed too tightly. All five 26s share one cascade whose last checkVerMatch (18,780 cycles at HI) is a
+  sure glitch 2 hit in both music profiles. The score routine runs inside the match routines and its cost
+  grows with the points per kill, so the same call is 18,611 cycles at MED (still a hit) and 18,455 at LOW
+  ("maybe"). In Mesen at LOW, four of the five plans fired glitch 2 (g2 = 58) and one (`low26_4`) passed,
+  twice: 26 kills, 270,500, g1 = g2 = g3 = 0. The plans differ only in earlier pills, and the passing one
+  reaches the trigger 26 frames later, so the sprite animation phase (which sets the window lengths) decides
+  the "maybe" cases. Levers to try next: speed LOW/MED for every "maybe" or near-hit combo, and waiting a few
+  frames before dropping the trigger pill to choose the animation phase.
 
 ### Records so far (level 10, HI, music off; each proven in Mesen, every pill matched, g1 = g2 = g3 = 0)
 | Category | N | Pills | Kills | Points (last pill) | Player 2 held | Files |
@@ -400,6 +410,7 @@ Rejected: 417S, 418S (2004, FCEU), 6052S (0:22.96, documents remove-glitch direc
 | No controller 2 | 31 | 23 | 13 (cap) | 70,800 | - | best/nop2_13.plan, videos/nop2_13.mp4 |
 | Player 2, pad-legal | 154 | 49 | 23 | 594,600 | $75 $44 $85 $76 | best/pad_23.plan, videos/pad_23.mp4 |
 | Player 2, any value | 154 | 48 | 25 | 738,900 | $5D $44 $5E $5E $5A $85 $85 $76 $76 | best/any_25.plan, videos/any_25.mp4 |
+| Player 2, any value, speed LOW | 154 | 33 | 26 | 270,500 | $46 $76 $76 $3E $5D $5A $75 $75 | best/any_26_low.plan, videos/any_26_low.mp4 |
 
 Earlier records, kept in `best/` and `videos/`: pad 20 (N=154, 23 pills, 376,500, `pad_20`), pad 21 (N=154, 59 pills, 449,700, `pad_21`), any 23
 (N=198, 63 pills, 594,600, `any_23`), any 24 (N=154, 33 pills, 666,600, `any_24`).

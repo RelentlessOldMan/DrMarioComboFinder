@@ -16,7 +16,7 @@ proves each one in an emulator.
 
 ## The records
 
-All on level 10, speed HI, music off, NTSC PRG0 ROM. Each was played in Mesen 2 from power-on with every
+All on level 10, music off, NTSC PRG0 ROM, speed HI unless noted. Each was played in Mesen 2 from power-on with every
 pill landing where the plan says, the board matching the simulator after every pill, and no glitch
 firing. "Kills" are the viruses that one last pill clears; the points are that pill's.
 
@@ -27,7 +27,8 @@ need, the bad write changes nothing. Whether that counts is up to you, so there 
 |---|---|---|---|---|---|---|---|
 | No controller 2 | 31 | 23 | **13** | 70,800 | – | [`best/nop2_13.plan`](best/nop2_13.plan) | [MP4](videos/nop2_13.mp4) |
 | Player 2, standard pad only | 154 | 49 | **23** | 594,600 | `$75 $44 $85 $76` | [`best/pad_23.plan`](best/pad_23.plan) | [MP4](videos/pad_23.mp4) |
-| Player 2, any value | 154 | 48 | **25** | 738,900 | `$5D $44 $5E $5E $5A $85 $85 $76 $76` | [`best/any_25.plan`](best/any_25.plan) | [MP4](videos/any_25.mp4) |
+| Player 2, any value (top score) | 154 | 48 | **25** | 738,900 | `$5D $44 $5E $5E $5A $85 $85 $76 $76` | [`best/any_25.plan`](best/any_25.plan) | [MP4](videos/any_25.mp4) |
+| Player 2, any value (most kills, speed LOW) | 154 | 33 | **26** | 270,500 | `$46 $76 $76 $3E $5D $5A $75 $75` | [`best/any_26_low.plan`](best/any_26_low.plan) | [MP4](videos/any_26_low.mp4) |
 
 Without a second controller, 13 kills is the hard cap: the 14th kill pays ×256, and adding up that score
 takes so long that an NMI is sure to land in the middle of the clear.
@@ -54,6 +55,17 @@ takes so long that an NMI is sure to land in the middle of the clear.
 | Just before the last pill lands | After the cascade |
 |---|---|
 | ![before](docs/img/any_25_before.png) | ![after](docs/img/any_25_after.png) |
+
+### Player 2, any value, most kills: 26 kills at speed LOW
+
+The same 26-kill cascade fires the metasprite bug at speed HI and MED. At LOW each kill pays less, so adding
+up the score takes fewer cycles and the timing comes out clear (in one of the five plans that build it).
+
+| Just before the last pill lands | After the cascade |
+|---|---|
+| ![before](docs/img/any_26_low_before.png) | ![after](docs/img/any_26_low_after.png) |
+
+![26-kill combo](docs/img/any_26_low_combo.gif)
 
 Earlier records (pad 20, pad 21, any 23, any 24) are still in [`best/`](best/README.md) and `videos/`.
 
