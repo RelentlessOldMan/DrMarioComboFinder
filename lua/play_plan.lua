@@ -5,7 +5,8 @@
 -- Env: DRM_N, DRM_LEVEL, DRM_SPEED (0-2, default 1), DRM_MUSIC (0 fever, 1 chill, 2 off; default 0),
 --      DRM_P2 (1: player 2 holds fieldPos_last while a clear loop can be interrupted, see RESEARCH.md),
 --      DRM_PLAN (file: one "rot x" line per pill), DRM_OUT (jsonl, one line per pill),
---      DRM_INPUTS (input log, "frame p1 p2" hex per line).
+--      DRM_INPUTS (input log, "frame p1 p2" hex per line), DRM_WAIT (frames to wait after the last pill
+--      spawns before holding Down, default 0: shifts the frame phase of the trigger cascade).
 -- Glitches are not repaired, only reported per pill: g1 = $49 changed inside a clear loop, g2 = the
 -- metasprite pointer (tmp48) changed inside metaspriteUpdate, g3 = the virus counter on screen (VRAM $233B)
 -- differs from viruses left ($0324) once the cascade is over (the NMI drew the tens digit from $0324 and the
@@ -36,6 +37,7 @@ local N = tonumber(os.getenv("DRM_N") or "1")
 local want = { tonumber(os.getenv("DRM_LEVEL") or "0"), tonumber(os.getenv("DRM_SPEED") or "1"),
                tonumber(os.getenv("DRM_MUSIC") or "0") }
 local p2fix = os.getenv("DRM_P2") == "1"
+local wait = tonumber(os.getenv("DRM_WAIT") or "0")
 local plan = {}
 for line in io.lines(os.getenv("DRM_PLAN")) do
   local rot, x = string.match(line, "^%s*(%d+)%s+(%d+)")
@@ -57,7 +59,7 @@ local function pad(m)
 end
 
 local phase, frame, last_press, press = "title", 0, -100, {}
-local pill, pill_count, lock_field, lock_score = 0, nil, nil, 0
+local pill, pill_count, lock_field, lock_score, spawn = 0, nil, nil, 0, 0
 local g1, g2, p2frames, p2vals = 0, 0, 0, {}
 local function finish(code)
   if phase == "done" then return end
@@ -153,12 +155,13 @@ emu.addEventCallback(function()
         lock_field = nil
         pill_count = count
         pill = pill + 1
+        spawn = frame
         if pill > #plan then finish(0); return end
       end
       local p = plan[pill]
       local rot, x = rd(0x0325), rd(0x0305)
       if rot == p.rot and x == p.x then
-        press = { down = true }
+        press = (pill < #plan or frame >= spawn + wait) and { down = true } or {}
       elseif frame % 2 == 0 then
         -- rotate and move in the same frame (the game does Y, then X, then rotation)
         press = {}

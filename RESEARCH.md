@@ -403,6 +403,12 @@ Rejected: 417S, 418S (2004, FCEU), 6052S (0:22.96, documents remove-glitch direc
   reaches the trigger 26 frames later, so the sprite animation phase (which sets the window lengths) decides
   the "maybe" cases. Levers to try next: speed LOW/MED for every "maybe" or near-hit combo, and waiting a few
   frames before dropping the trigger pill to choose the animation phase.
+- **Waiting before the trigger** (`DRM_WAIT=k` in `lua/play_plan.lua`: hold Down on the last pill only k frames
+  after it spawns). N=218 gave pad 24 (666,600, values pad-legal, sprite check "maybe" at HI, sure hit at LOW
+  and MED). In Mesen every wait from 0 to 50 frames fired glitch 2: g2 = 59-60 for most, 8 for waits 8, 9, 12,
+  22, 26. So the phase changes how badly the sprite update is hit but did not clear it here.
+- **Pad-value filter on N=154** (`pad=1`, beam 8000/16000, shape 0.15-0.35, look 3/4): no 22+ combo passes.
+  The seed 1-260 sweep at beam 8000 found 22+ only on N=3, 28, 53, 127, 154, 217 and 218 (24).
 
 ### Records so far (level 10, HI, music off; each proven in Mesen, every pill matched, g1 = g2 = g3 = 0)
 | Category | N | Pills | Kills | Points (last pill) | Player 2 held | Files |

@@ -10,7 +10,7 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
    (fewer score cycles), in one of five plans (animation phase). Re-screen all 24+ candidates at speeds 0 and 1,
    and add an optional wait before the trigger pill to `play_plan.lua` so "maybe" combos can be retried at
    several phases. The engine searches only score HI; add speed to the search and screens.
-1. **Seeds 196-260** at beam 8000 (the 1-195 sweep found nothing above 22 off N=154).
+1. **N=218** (24 at beam 8000) and the 22-seeds (3, 28, 53, 127, 217): deep re-search like N=154's.
 1. **Other levels and speeds:** only level 10 HI has been searched hard. Level 7 gave nothing and level 16
    reached 20.
 
