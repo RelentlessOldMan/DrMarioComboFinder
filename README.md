@@ -26,7 +26,7 @@ need, the bad write changes nothing. Whether that counts is up to you, so there 
 | Category | Seed (RNG index) | Pills | Kills | Points | Player 2 holds | Plan | Video |
 |---|---|---|---|---|---|---|---|
 | No controller 2 | 31 | 23 | **13** | 70,800 | – | [`best/nop2_13.plan`](best/nop2_13.plan) | [MP4](videos/nop2_13.mp4) |
-| Player 2, standard pad only | 154 | 49 | **23** | 594,600 | `$75 $44 $85 $76` | [`best/pad_23.plan`](best/pad_23.plan) | [MP4](videos/pad_23.mp4) |
+| Player 2, standard pad only (level 14) | 26 | 31 | **24** | 666,600 | `$61 $56 $56 $55 $70 $69` | [`best/pad_24.plan`](best/pad_24.plan) | [MP4](videos/pad_24.mp4) |
 | Player 2, any value (level 14) | 26 | 48 | **29** | 1,034,700 | `$60 $5C $56 $55 $70 $69 $5E $67 $67` | [`best/any_29.plan`](best/any_29.plan) | [MP4](videos/any_29.mp4) |
 
 Without a second controller, 13 kills is the hard cap: the 14th kill pays ×256, and adding up that score
@@ -41,24 +41,24 @@ takes so long that an NMI is sure to land in the middle of the clear.
 
 ![13-kill combo](docs/img/nop2_13_combo.gif)
 
-### Player 2, standard pad: 23 kills
+### Player 2, standard pad: 24 kills on level 14
 
 | Just before the last pill lands | After the cascade |
 |---|---|
-| ![before](docs/img/pad_23_before.png) | ![after](docs/img/pad_23_after.png) |
+| ![before](docs/img/pad_24_before.png) | ![after](docs/img/pad_24_after.png) |
 
-![23-kill combo](docs/img/pad_23_combo.gif)
+![24-kill combo](docs/img/pad_24_combo.gif)
 
 ### Player 2, any value: 29 kills on level 14
 
-Level 14 starts with 60 viruses. Seed 26 comes up before the options can be set, so the run waits one full
+Level 14 starts with 60 viruses. Like the pad 24 (same seed), seed 26 comes up before the options can be set, so the run waits one full
 RNG cycle (32,767 frames, about 9 minutes) on the options screen; the video cuts that wait.
 
 | Just before the last pill lands | After the cascade |
 |---|---|
 | ![before](docs/img/any_29_before.png) | ![after](docs/img/any_29_after.png) |
 
-Earlier records (pad 20, pad 21, any 23, any 24, any 25, and any 26 at speed LOW) are still in
+Earlier records (pad 20, pad 21, pad 23, any 23, any 24, any 25, and any 26 at speed LOW) are still in
 [`best/`](best/README.md) and `videos/`.
 
 The GIFs are cut from the full videos, which show the whole game from power-on. Plan and input-log formats

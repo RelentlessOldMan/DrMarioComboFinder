@@ -29,7 +29,7 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
   every pill and both glitches, `lua/replay.lua` + `tools/make_video.ps1` make the video.
 - **Records** (HI, music off, level 10 unless noted; proven in Mesen, videos checked):
   - no controller 2: 13 kills, 70,800 points, N=31 (2026-11-14);
-  - player 2 pad values: 23 kills, 594,600 points, N=154 (2026-11-16; was 21 / 449,700, before that 20 / 376,500);
+  - player 2 pad values: 24 kills, 666,600 points, level 14 N=26 (2026-11-19; was 23 / 594,600 on level 10);
   - player 2 any value: 29 kills, 1,034,700 points, level 14 N=26 (2026-11-19; was 25 / 738,900 and 26 at LOW / 270,500, on level 10).
 - **Exact pad check** (2026-11-15, `tools/pad_exact.py`): agreed with Mesen on 103/103 passing combos
   for glitch 1. It does not check glitch 2.

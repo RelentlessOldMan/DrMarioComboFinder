@@ -416,15 +416,16 @@ Rejected: 417S, 418S (2004, FCEU), 6052S (0:22.96, documents remove-glitch direc
   3/4) gave 28 on level 12 N=4 and level 13 N=3, and 29 on level 14 N=26. Screened at HI, many 25-28s and all
   six 29s pass the any screen; pad passes only reach 24 (level 13 N=27, level 14 N=26). Seeds 31-100 on
   levels 12-14 at beam 2000 added nothing above 25. In Mesen: **any 29, level 14 N=26, 48 pills, 1,034,700**,
-  g1 = g2 = g3 = 0 (first try).
+  g1 = g2 = g3 = 0 (first try); both other 29s pass too. **Pad 24, level 14 N=26, 31 pills, 666,600**: all six
+  candidates passed. Level 13 N=3 any 28 (959,100) passed four times.
 
 ### Records so far (HI, music off, level 10 unless noted; each proven in Mesen, every pill matched, g1 = g2 = g3 = 0)
 | Category | N | Pills | Kills | Points (last pill) | Player 2 held | Files |
 |---|---|---|---|---|---|---|
 | No controller 2 | 31 | 23 | 13 (cap) | 70,800 | - | best/nop2_13.plan, videos/nop2_13.mp4 |
-| Player 2, pad-legal | 154 | 49 | 23 | 594,600 | $75 $44 $85 $76 | best/pad_23.plan, videos/pad_23.mp4 |
+| Player 2, pad-legal, level 14 | 26 | 31 | 24 | 666,600 | $61 $56 $56 $55 $70 $69 | best/pad_24.plan, videos/pad_24.mp4 |
 | Player 2, any value, level 14 | 26 | 48 | 29 | 1,034,700 | $60 $5C $56 $55 $70 $69 $5E $67 $67 | best/any_29.plan, videos/any_29.mp4 |
 
-Earlier records, kept in `best/` and `videos/`: pad 20 (N=154, 23 pills, 376,500, `pad_20`), pad 21 (N=154, 59 pills, 449,700, `pad_21`), any 23
+Earlier records, kept in `best/` and `videos/`: pad 23 (N=154, 49 pills, 594,600, `pad_23`), pad 20 (N=154, 23 pills, 376,500, `pad_20`), pad 21 (N=154, 59 pills, 449,700, `pad_21`), any 23
 (N=198, 63 pills, 594,600, `any_23`), any 24 (N=154, 33 pills, 666,600, `any_24`), any 25 (N=154, 48 pills, 738,900, `any_25`), any 26 at speed LOW
 (N=154, 33 pills, 270,500, `any_26_low`).
