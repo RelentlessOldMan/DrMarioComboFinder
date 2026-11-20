@@ -2,7 +2,9 @@
 -- 256x240 BGRA for ffmpeg (tools/make_video.ps1). Frame numbering matches play_plan.lua: the counter
 -- counts finished frames, and the log line for counter value f is applied at that frame's input poll.
 -- Env: DRM_INPUTS, DRM_RAW (optional raw video output), DRM_TAIL (frames to keep running after the log
---      ends, default 180), DRM_OUT (optional: final RAM summary).
+--      ends, default 180), DRM_OUT (optional: final RAM summary). A run of more than 600 idle frames (no
+--      buttons on either pad, e.g. waiting a full RNG cycle on the options screen) is cut from the video,
+--      keeping its first and last 120 frames.
 
 local M = emu.memType.nesDebug
 local log, last = {}, 0
@@ -12,6 +14,15 @@ for line in io.lines(os.getenv("DRM_INPUTS")) do
 end
 local tail = tonumber(os.getenv("DRM_TAIL") or "180")
 local raw = os.getenv("DRM_RAW") and assert(io.open(os.getenv("DRM_RAW"), "wb"))
+local cut, run = {}, 0
+for f = 1, last + 1 do
+  local e = log[f]
+  if f <= last and e and e[1] == 0 and e[2] == 0 then run = run + 1
+  else
+    if run > 600 then for g = f - run + 120, f - 121 do cut[g] = true end end
+    run = 0
+  end
+end
 
 local NAMES = { [0x80] = "a", [0x40] = "b", [0x20] = "select", [0x10] = "start", [0x08] = "up", [0x04] = "down", [0x02] = "left", [0x01] = "right" }
 local function pad(m)
@@ -32,7 +43,7 @@ end, emu.eventType.inputPolled)
 
 emu.addEventCallback(function()
   frame = frame + 1
-  if raw then
+  if raw and not cut[frame] then
     local buf = emu.getScreenBuffer()
     local parts = {}
     for i = 1, #buf, 256 do parts[#parts + 1] = string.pack(ROW, table.unpack(buf, i, i + 255)) end

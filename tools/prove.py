@@ -12,7 +12,7 @@ from drm.gen import SEED, advance, generate
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-def prove(n, level, steps, name, speed=2, music=2, p2=0, timeout=300):
+def prove(n, level, steps, name, speed=2, music=2, p2=0, timeout=900):
     pfile = os.path.join(ROOT, "plans", name + ".txt")
     with open(pfile, "w") as f:
         f.writelines("%d %d\n" % s for s in steps)

@@ -136,11 +136,11 @@ emu.addEventCallback(function()
       elseif s < 2 then press = { down = true }
       else press = { up = true } end
     end
-    if index[rng()] == N - 1 then
-      if not set then print("options not set in time"); finish(2); return end
+    -- the RNG cycles every 32,767 frames, so a seed that came before the options were set comes round again
+    if index[rng()] == N - 1 and set then
       press = { start = true }; phase = "started"
-    elseif index[rng()] >= N then
-      print("missed N"); finish(2); return
+    elseif frame > 70000 then
+      print("options not set in time"); finish(2); return
     end
   elseif phase == "started" and rd(0x46) == 4 then
     phase = "play"

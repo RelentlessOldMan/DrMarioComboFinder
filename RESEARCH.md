@@ -299,7 +299,8 @@ Rejected: 417S, 418S (2004, FCEU), 6052S (0:22.96, documents remove-glitch direc
 - `$0317` is written with 1 more than once per pill (again during the cascade), so the landing snapshot
   must take the first write only.
 - N must leave time to set the level before START: N=5 at level 10 was missed (needs more RNG steps
-  than the title screen gives).
+  than the title screen gives). The RNG cycles every 32,767 frames, so `play_plan.lua` now waits for the
+  next time the seed comes round (about 9 minutes of game time; `replay.lua` cuts long idle runs from videos).
 - `lua/replay.lua` replays the log from power-on: same score (13,200 at frame 1,091), so the log is
   enough to reproduce a run. `tools/make_video.ps1` dumps frames (emu.getScreenBuffer) and encodes
   them with ffmpeg at 3x, no audio. Paths passed to Mesen must be absolute.
@@ -410,13 +411,20 @@ Rejected: 417S, 418S (2004, FCEU), 6052S (0:22.96, documents remove-glitch direc
 - **Pad-value filter on N=154** (`pad=1`, beam 8000/16000, shape 0.15-0.35, look 3/4): no 22+ combo passes.
   The seed 1-260 sweep at beam 8000 found 22+ only on N=3, 28, 53, 127, 154, 217 and 218 (24).
 
-### Records so far (level 10, HI, music off; each proven in Mesen, every pill matched, g1 = g2 = g3 = 0)
+- **Other levels.** Seeds 1-30 at beam 2000 on levels 12, 13, 14, 18 and 20 reached 24-25 kills (level 10
+  needed 260 seeds and beam 8000 for that). Deep re-search of the best seeds (beam 8000, shape 0.2-0.3, look
+  3/4) gave 28 on level 12 N=4 and level 13 N=3, and 29 on level 14 N=26. Screened at HI, many 25-28s and all
+  six 29s pass the any screen; pad passes only reach 24 (level 13 N=27, level 14 N=26). Seeds 31-100 on
+  levels 12-14 at beam 2000 added nothing above 25. In Mesen: **any 29, level 14 N=26, 48 pills, 1,034,700**,
+  g1 = g2 = g3 = 0 (first try).
+
+### Records so far (HI, music off, level 10 unless noted; each proven in Mesen, every pill matched, g1 = g2 = g3 = 0)
 | Category | N | Pills | Kills | Points (last pill) | Player 2 held | Files |
 |---|---|---|---|---|---|---|
 | No controller 2 | 31 | 23 | 13 (cap) | 70,800 | - | best/nop2_13.plan, videos/nop2_13.mp4 |
 | Player 2, pad-legal | 154 | 49 | 23 | 594,600 | $75 $44 $85 $76 | best/pad_23.plan, videos/pad_23.mp4 |
-| Player 2, any value | 154 | 48 | 25 | 738,900 | $5D $44 $5E $5E $5A $85 $85 $76 $76 | best/any_25.plan, videos/any_25.mp4 |
-| Player 2, any value, speed LOW | 154 | 33 | 26 | 270,500 | $46 $76 $76 $3E $5D $5A $75 $75 | best/any_26_low.plan, videos/any_26_low.mp4 |
+| Player 2, any value, level 14 | 26 | 48 | 29 | 1,034,700 | $60 $5C $56 $55 $70 $69 $5E $67 $67 | best/any_29.plan, videos/any_29.mp4 |
 
 Earlier records, kept in `best/` and `videos/`: pad 20 (N=154, 23 pills, 376,500, `pad_20`), pad 21 (N=154, 59 pills, 449,700, `pad_21`), any 23
-(N=198, 63 pills, 594,600, `any_23`), any 24 (N=154, 33 pills, 666,600, `any_24`).
+(N=198, 63 pills, 594,600, `any_23`), any 24 (N=154, 33 pills, 666,600, `any_24`), any 25 (N=154, 48 pills, 738,900, `any_25`), any 26 at speed LOW
+(N=154, 33 pills, 270,500, `any_26_low`).

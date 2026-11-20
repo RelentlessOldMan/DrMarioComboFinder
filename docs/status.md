@@ -11,8 +11,8 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
    and add an optional wait before the trigger pill to `play_plan.lua` so "maybe" combos can be retried at
    several phases. The engine searches only score HI; add speed to the search and screens.
 1. **N=218** (24 at beam 8000) and the 22-seeds (3, 28, 53, 127, 217): deep re-search like N=154's.
-1. **Other levels and speeds:** only level 10 HI has been searched hard. Level 7 gave nothing and level 16
-   reached 20.
+1. **Other levels:** levels 12-14 give much bigger combos than level 10 (28-29 at beam 8000 on a few seeds).
+   Search more seeds and levels 15-20 deeply, screen at HI and LOW, prove the best in Mesen.
 
 ## Built
 
@@ -27,11 +27,10 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
   pad-legal fieldPos_last values (cycle model fitted on 308 calls).
 - **Mesen pipeline** (2026-11-14): `lua/play_plan.lua` plays a plan and logs inputs, `tools/prove.py` checks
   every pill and both glitches, `lua/replay.lua` + `tools/make_video.ps1` make the video.
-- **Records** (level 10, HI, music off; proven in Mesen, videos checked):
+- **Records** (HI, music off, level 10 unless noted; proven in Mesen, videos checked):
   - no controller 2: 13 kills, 70,800 points, N=31 (2026-11-14);
   - player 2 pad values: 23 kills, 594,600 points, N=154 (2026-11-16; was 21 / 449,700, before that 20 / 376,500);
-  - player 2 any value, most kills: 26 kills at speed LOW, 270,500 points, N=154 (2026-11-17).
-  - player 2 any value: 25 kills, 738,900 points, N=154 (2026-11-16; was 24 / 666,600, before that 23 / 594,600).
+  - player 2 any value: 29 kills, 1,034,700 points, level 14 N=26 (2026-11-19; was 25 / 738,900 and 26 at LOW / 270,500, on level 10).
 - **Exact pad check** (2026-11-15, `tools/pad_exact.py`): agreed with Mesen on 103/103 passing combos
   for glitch 1. It does not check glitch 2.
 - **Glitch 2 check** (2026-11-16, `tools/sprite_check.py`, engine `pad=2`): four metasprite windows after

@@ -2,7 +2,7 @@
 
 **Finds the biggest single-pill combos in NES Dr. Mario that don't break the game: searched outside the game, proven in Mesen 2.**
 
-![25-kill combo, 738,900 points](docs/img/any_25_combo.gif)
+![29-kill combo, 1,034,700 points](docs/img/any_29_combo.gif)
 
 ## Why
 
@@ -16,7 +16,7 @@ proves each one in an emulator.
 
 ## The records
 
-All on level 10, music off, NTSC PRG0 ROM, speed HI unless noted. Each was played in Mesen 2 from power-on with every
+Music off, NTSC PRG0 ROM, speed HI unless noted; level 10 unless noted. Each was played in Mesen 2 from power-on with every
 pill landing where the plan says, the board matching the simulator after every pill, and no glitch
 firing. "Kills" are the viruses that one last pill clears; the points are that pill's.
 
@@ -27,8 +27,7 @@ need, the bad write changes nothing. Whether that counts is up to you, so there 
 |---|---|---|---|---|---|---|---|
 | No controller 2 | 31 | 23 | **13** | 70,800 | – | [`best/nop2_13.plan`](best/nop2_13.plan) | [MP4](videos/nop2_13.mp4) |
 | Player 2, standard pad only | 154 | 49 | **23** | 594,600 | `$75 $44 $85 $76` | [`best/pad_23.plan`](best/pad_23.plan) | [MP4](videos/pad_23.mp4) |
-| Player 2, any value (top score) | 154 | 48 | **25** | 738,900 | `$5D $44 $5E $5E $5A $85 $85 $76 $76` | [`best/any_25.plan`](best/any_25.plan) | [MP4](videos/any_25.mp4) |
-| Player 2, any value (most kills, speed LOW) | 154 | 33 | **26** | 270,500 | `$46 $76 $76 $3E $5D $5A $75 $75` | [`best/any_26_low.plan`](best/any_26_low.plan) | [MP4](videos/any_26_low.mp4) |
+| Player 2, any value (level 14) | 26 | 48 | **29** | 1,034,700 | `$60 $5C $56 $55 $70 $69 $5E $67 $67` | [`best/any_29.plan`](best/any_29.plan) | [MP4](videos/any_29.mp4) |
 
 Without a second controller, 13 kills is the hard cap: the 14th kill pays ×256, and adding up that score
 takes so long that an NMI is sure to land in the middle of the clear.
@@ -50,24 +49,17 @@ takes so long that an NMI is sure to land in the middle of the clear.
 
 ![23-kill combo](docs/img/pad_23_combo.gif)
 
-### Player 2, any value: 25 kills
+### Player 2, any value: 29 kills on level 14
+
+Level 14 starts with 60 viruses. Seed 26 comes up before the options can be set, so the run waits one full
+RNG cycle (32,767 frames, about 9 minutes) on the options screen; the video cuts that wait.
 
 | Just before the last pill lands | After the cascade |
 |---|---|
-| ![before](docs/img/any_25_before.png) | ![after](docs/img/any_25_after.png) |
+| ![before](docs/img/any_29_before.png) | ![after](docs/img/any_29_after.png) |
 
-### Player 2, any value, most kills: 26 kills at speed LOW
-
-The same 26-kill cascade fires the metasprite bug at speed HI and MED. At LOW each kill pays less, so adding
-up the score takes fewer cycles and the timing comes out clear (in one of the five plans that build it).
-
-| Just before the last pill lands | After the cascade |
-|---|---|
-| ![before](docs/img/any_26_low_before.png) | ![after](docs/img/any_26_low_after.png) |
-
-![26-kill combo](docs/img/any_26_low_combo.gif)
-
-Earlier records (pad 20, pad 21, any 23, any 24) are still in [`best/`](best/README.md) and `videos/`.
+Earlier records (pad 20, pad 21, any 23, any 24, any 25, and any 26 at speed LOW) are still in
+[`best/`](best/README.md) and `videos/`.
 
 The GIFs are cut from the full videos, which show the whole game from power-on. Plan and input-log formats
 are in [`best/`](best/README.md).
@@ -86,7 +78,7 @@ on the PATH.
     python tools/try_many.py out/batch.jsonl mybatch 8  # play the best candidates in Mesen
     powershell tools\make_video.ps1 out\mybatch_0.inputs out\mybatch_0.mp4
 
-To watch a record, replay its input log: `DRM_INPUTS=best/any_25.inputs` and run
+To watch a record, replay its input log: `DRM_INPUTS=best/any_29.inputs` and run
 `mesen/Mesen.exe --testRunner lua/replay.lua drmario.nes`, or make a video with `tools/make_video.ps1`.
 
 ## How it works
