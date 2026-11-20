@@ -12,7 +12,8 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
    several phases. The engine searches only score HI; add speed to the search and screens.
 1. **N=218** (24 at beam 8000) and the 22-seeds (3, 28, 53, 127, 217): deep re-search like N=154's.
 1. **Other levels:** levels 12-14 give much bigger combos than level 10 (28-29 at beam 8000 on a few seeds).
-   Search more seeds and levels 15-20 deeply, screen at HI and LOW, prove the best in Mesen.
+   Levels 11 and 15-20 did worse on seeds 1-40. Beam 16000 on level 14 N=26 gives no 30. Next: finish the beam 8000
+   re-search of the level 12-14 seeds that reached 22 at beam 2000 (seeds 1-100), and scan seeds 100+ there.
 
 ## Built
 
