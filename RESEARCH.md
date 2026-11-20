@@ -420,7 +420,11 @@ Rejected: 417S, 418S (2004, FCEU), 6052S (0:22.96, documents remove-glitch direc
   candidates passed. Level 13 N=3 any 28 (959,100) passed four times.
 - Seeds 1-40 at beam 2000 on the other levels: best 23 on level 11, 21 on 15 and 16, 20 on 18, 19 on 17 and 20,
   16 on 19. Taller virus fields (15+) leave less room to build. Level 14 N=26 at beam 16000 (shape 0.2-0.3,
-  look 3/4) still tops out at 29; beam 8000 on the level 12-14 seeds that reached 22 (first few seeds) gave 26 at most.
+  look 3/4) still tops out at 29. Beam 8000 on the other level 12-14 seeds that reached 22 (seeds 1-100) found
+  29 on level 13 N=4 and level 14 N=4 (and 27 on level 14 N=18); one level 14 N=4 29 passed in Mesen with the
+  same 1,034,700 (29 kills at HI always pay the same). Beam 16000 on those two seeds: 28 at most. Seeds 101-200
+  at beam 2000: 25 at most. No 25+ passes the pad screen (they need values like $5C), and the engine's `pad=1`
+  filter (beam 8000) on the six best level 12-14 seeds gives nothing of 24+.
 
 ### Records so far (HI, music off, level 10 unless noted; each proven in Mesen, every pill matched, g1 = g2 = g3 = 0)
 | Category | N | Pills | Kills | Points (last pill) | Player 2 held | Files |
