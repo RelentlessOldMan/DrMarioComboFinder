@@ -428,14 +428,18 @@ Rejected: 417S, 418S (2004, FCEU), 6052S (0:22.96, documents remove-glitch direc
 - Level 14 seeds 201-800 at beam 2000: N=435 gave 28 (any screen "maybe"), N=369 and 556 gave 26; level 13 seeds
   201-400 nothing above 22. Re-search made them worse: N=435 reached only 15-25 at beam 1500-16000 with any other
   shape/look, so its 28 is a lucky hit of one setting. Beam size is far from monotonic per seed.
+- Level 14 seeds 801-1200 at beam 2000: N=1049 gave 29. A small sweep there (beam 2000/4000/8000, shape
+  0.2-0.3, look 2-4) gave 30 and 31 (beam 4000, look 2). The any screen called the 31 "maybe" and twelve 30s
+  clear. In Mesen the 31 and three 30s all passed: **any 31, level 14 N=1049, 69 pills, 1,117,800**,
+  g1 = g2 = g3 = 0. Look 2 matters here; the earlier deep searches used look 3/4 only.
 
 ### Records so far (HI, music off, level 10 unless noted; each proven in Mesen, every pill matched, g1 = g2 = g3 = 0)
 | Category | N | Pills | Kills | Points (last pill) | Player 2 held | Files |
 |---|---|---|---|---|---|---|
 | No controller 2 | 31 | 23 | 13 (cap) | 70,800 | - | best/nop2_13.plan, videos/nop2_13.mp4 |
 | Player 2, pad-legal, level 14 | 26 | 31 | 24 | 666,600 | $61 $56 $56 $55 $70 $69 | best/pad_24.plan, videos/pad_24.mp4 |
-| Player 2, any value, level 14 | 26 | 48 | 29 | 1,034,700 | $60 $5C $56 $55 $70 $69 $5E $67 $67 | best/any_29.plan, videos/any_29.mp4 |
+| Player 2, any value, level 14 | 1049 | 69 | 31 | 1,117,800 | $4E $48 $5D $5D $5E $4E $5B $6D $6E $6E $5A $6B | best/any_31.plan, videos/any_31.mp4 |
 
-Earlier records, kept in `best/` and `videos/`: pad 23 (N=154, 49 pills, 594,600, `pad_23`), pad 20 (N=154, 23 pills, 376,500, `pad_20`), pad 21 (N=154, 59 pills, 449,700, `pad_21`), any 23
+Earlier records, kept in `best/` and `videos/`: any 29 (level 14 N=26, 48 pills, 1,034,700, `any_29`), pad 23 (N=154, 49 pills, 594,600, `pad_23`), pad 20 (N=154, 23 pills, 376,500, `pad_20`), pad 21 (N=154, 59 pills, 449,700, `pad_21`), any 23
 (N=198, 63 pills, 594,600, `any_23`), any 24 (N=154, 33 pills, 666,600, `any_24`), any 25 (N=154, 48 pills, 738,900, `any_25`), any 26 at speed LOW
 (N=154, 33 pills, 270,500, `any_26_low`).

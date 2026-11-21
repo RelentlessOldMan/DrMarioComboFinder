@@ -1,6 +1,6 @@
 # Records
 
-Level 10 (any_29, pad_24: level 14), speed HI unless noted, music off, NTSC PRG0. Each record has two files:
+Level 10 (any_31, any_29, pad_24: level 14), speed HI unless noted, music off, NTSC PRG0. Each record has two files:
 
 - `<name>.plan`: one line per pill, `rot x`: the rotation (0–3) and the column (0–7) the pill ends up in.
   The level starts at the RNG index in the table below (`lua/play_plan.lua`, `DRM_N`); the last line is the
@@ -12,6 +12,7 @@ Level 10 (any_29, pad_24: level 14), speed HI unless noted, music off, NTSC PRG0
 
 | Name | RNG index | Pills | Kills | Points | Player 2 holds |
 |---|---|---|---|---|---|
+| `any_31` (level 14) | 1049 | 69 | 31 | 1,117,800 | `$4E $48 $5D $5D $5E $4E $5B $6D $6E $6E $5A $6B` |
 | `any_29` (level 14) | 26 | 48 | 29 | 1,034,700 | `$60 $5C $56 $55 $70 $69 $5E $67 $67` |
 | `pad_24` (level 14) | 26 | 31 | 24 | 666,600 | `$61 $56 $56 $55 $70 $69` |
 | `nop2_13` | 31 | 23 | 13 | 70,800 | – |
@@ -23,5 +24,5 @@ Level 10 (any_29, pad_24: level 14), speed HI unless noted, music off, NTSC PRG0
 | `pad_20` (earlier) | 154 | 23 | 20 | 376,500 | `$75 $5A $58` |
 | `any_23` (earlier) | 198 | 63 | 23 | 594,600 | `$4F $62 $76 $67 $67 $7E` |
 
-Final scores on screen: 1,036,200 (any_29), 667,800 (pad_24), 72,300, 596,400, 270,600, 450,300, 740,700, 666,900, 377,100 and 595,200 (the combo plus a few small clears
+Final scores on screen: 1,119,000 (any_31), 1,036,200 (any_29), 667,800 (pad_24), 72,300, 596,400, 270,600, 450,300, 740,700, 666,900, 377,100 and 595,200 (the combo plus a few small clears
 earlier on).

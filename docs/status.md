@@ -14,7 +14,8 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
 1. **Other levels:** levels 12-14 give much bigger combos than level 10 (28-29 at beam 8000 on a few seeds).
    Levels 11 and 15-20 did worse on seeds 1-40. Seeds 1-100 re-searched at beam 8000 give 29 on three seeds
    (level 14 N=26 and N=4, level 13 N=4), none higher at beam 16000; no pad 25. Level 14 seeds 201-800 gave a 28
-   (N=435, one setting only). Next: more level 14 seeds, and several beam/shape settings per seed in the scan.
+   (N=435, one setting only); N=1049 gave 31 (beam 4000, look 2). Next: more level 14 seeds, re-search good
+   seeds with look 2 and beams 2000-4000, not only look 3/4 at beam 8000+.
 
 ## Built
 
@@ -32,7 +33,8 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
 - **Records** (HI, music off, level 10 unless noted; proven in Mesen, videos checked):
   - no controller 2: 13 kills, 70,800 points, N=31 (2026-11-14);
   - player 2 pad values: 24 kills, 666,600 points, level 14 N=26 (2026-11-19; was 23 / 594,600 on level 10);
-  - player 2 any value: 29 kills, 1,034,700 points, level 14 N=26 (2026-11-19; was 25 / 738,900 and 26 at LOW / 270,500, on level 10).
+  - player 2 any value: 31 kills, 1,117,800 points, level 14 N=1049 (2026-11-20; was 29 / 1,034,700, level 14 N=26;
+    before that 25 / 738,900 and 26 at LOW / 270,500 on level 10).
 - **Exact pad check** (2026-11-15, `tools/pad_exact.py`): agreed with Mesen on 103/103 passing combos
   for glitch 1. It does not check glitch 2.
 - **Glitch 2 check** (2026-11-16, `tools/sprite_check.py`, engine `pad=2`): four metasprite windows after

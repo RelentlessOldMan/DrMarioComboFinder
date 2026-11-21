@@ -2,7 +2,7 @@
 
 **Finds the biggest single-pill combos in NES Dr. Mario that don't break the game: searched outside the game, proven in Mesen 2.**
 
-![29-kill combo, 1,034,700 points](docs/img/any_29_combo.gif)
+![31-kill combo, 1,117,800 points](docs/img/any_31_combo.gif)
 
 ## Why
 
@@ -27,7 +27,7 @@ need, the bad write changes nothing. Whether that counts is up to you, so there 
 |---|---|---|---|---|---|---|---|
 | No controller 2 | 31 | 23 | **13** | 70,800 | – | [`best/nop2_13.plan`](best/nop2_13.plan) | [MP4](videos/nop2_13.mp4) |
 | Player 2, standard pad only (level 14) | 26 | 31 | **24** | 666,600 | `$61 $56 $56 $55 $70 $69` | [`best/pad_24.plan`](best/pad_24.plan) | [MP4](videos/pad_24.mp4) |
-| Player 2, any value (level 14) | 26 | 48 | **29** | 1,034,700 | `$60 $5C $56 $55 $70 $69 $5E $67 $67` | [`best/any_29.plan`](best/any_29.plan) | [MP4](videos/any_29.mp4) |
+| Player 2, any value (level 14) | 1049 | 69 | **31** | 1,117,800 | `$4E $48 $5D $5D $5E $4E $5B $6D $6E $6E $5A $6B` | [`best/any_31.plan`](best/any_31.plan) | [MP4](videos/any_31.mp4) |
 
 Without a second controller, 13 kills is the hard cap: the 14th kill pays ×256, and adding up that score
 takes so long that an NMI is sure to land in the middle of the clear.
@@ -49,16 +49,20 @@ takes so long that an NMI is sure to land in the middle of the clear.
 
 ![24-kill combo](docs/img/pad_24_combo.gif)
 
-### Player 2, any value: 29 kills on level 14
+### Player 2, any value: 31 kills on level 14
 
-Level 14 starts with 60 viruses. Like the pad 24 (same seed), seed 26 comes up before the options can be set, so the run waits one full
-RNG cycle (32,767 frames, about 9 minutes) on the options screen; the video cuts that wait.
+Level 14 starts with 60 viruses; 56 are left when the last pill lands and 25 after the cascade.
 
 | Just before the last pill lands | After the cascade |
 |---|---|
-| ![before](docs/img/any_29_before.png) | ![after](docs/img/any_29_after.png) |
+| ![before](docs/img/any_31_before.png) | ![after](docs/img/any_31_after.png) |
 
-Earlier records (pad 20, pad 21, pad 23, any 23, any 24, any 25, and any 26 at speed LOW) are still in
+### Player 2, standard pad: notes
+
+Seed 26 (the pad 24) comes up before the options can be set, so the run waits one full RNG cycle (32,767
+frames, about 9 minutes) on the options screen; the video cuts that wait.
+
+Earlier records (pad 20, pad 21, pad 23, any 23, any 24, any 25, any 26 at speed LOW, and any 29) are still in
 [`best/`](best/README.md) and `videos/`.
 
 The GIFs are cut from the full videos, which show the whole game from power-on. Plan and input-log formats
@@ -78,7 +82,7 @@ on the PATH.
     python tools/try_many.py out/batch.jsonl mybatch 8  # play the best candidates in Mesen
     powershell tools\make_video.ps1 out\mybatch_0.inputs out\mybatch_0.mp4
 
-To watch a record, replay its input log: `DRM_INPUTS=best/any_29.inputs` and run
+To watch a record, replay its input log: `DRM_INPUTS=best/any_31.inputs` and run
 `mesen/Mesen.exe --testRunner lua/replay.lua drmario.nes`, or make a video with `tools/make_video.ps1`.
 
 ## How it works
