@@ -13,7 +13,8 @@ Where DrMarioComboFinder stands. Updated with every chunk of work; the rules are
 1. **N=218** (24 at beam 8000) and the 22-seeds (3, 28, 53, 127, 217): deep re-search like N=154's.
 1. **Other levels:** levels 12-14 give much bigger combos than level 10 (28-29 at beam 8000 on a few seeds).
    Levels 11 and 15-20 did worse on seeds 1-40. Seeds 1-100 re-searched at beam 8000 give 29 on three seeds
-   (level 14 N=26 and N=4, level 13 N=4), none higher at beam 16000; no pad 25. Next: seeds 200+ on levels 13-14.
+   (level 14 N=26 and N=4, level 13 N=4), none higher at beam 16000; no pad 25. Level 14 seeds 201-800 gave a 28
+   (N=435, one setting only). Next: more level 14 seeds, and several beam/shape settings per seed in the scan.
 
 ## Built
 

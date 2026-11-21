@@ -425,6 +425,9 @@ Rejected: 417S, 418S (2004, FCEU), 6052S (0:22.96, documents remove-glitch direc
   same 1,034,700 (29 kills at HI always pay the same). Beam 16000 on those two seeds: 28 at most. Seeds 101-200
   at beam 2000: 25 at most. No 25+ passes the pad screen (they need values like $5C), and the engine's `pad=1`
   filter (beam 8000) on the six best level 12-14 seeds gives nothing of 24+.
+- Level 14 seeds 201-800 at beam 2000: N=435 gave 28 (any screen "maybe"), N=369 and 556 gave 26; level 13 seeds
+  201-400 nothing above 22. Re-search made them worse: N=435 reached only 15-25 at beam 1500-16000 with any other
+  shape/look, so its 28 is a lucky hit of one setting. Beam size is far from monotonic per seed.
 
 ### Records so far (HI, music off, level 10 unless noted; each proven in Mesen, every pill matched, g1 = g2 = g3 = 0)
 | Category | N | Pills | Kills | Points (last pill) | Player 2 held | Files |
