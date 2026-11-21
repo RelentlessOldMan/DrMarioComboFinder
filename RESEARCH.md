@@ -432,6 +432,7 @@ Rejected: 417S, 418S (2004, FCEU), 6052S (0:22.96, documents remove-glitch direc
   0.2-0.3, look 2-4) gave 30 and 31 (beam 4000, look 2). The any screen called the 31 "maybe" and twelve 30s
   clear. In Mesen the 31 and three 30s all passed: **any 31, level 14 N=1049, 69 pills, 1,117,800**,
   g1 = g2 = g3 = 0. Look 2 matters here; the earlier deep searches used look 3/4 only.
+  Look 2 at beam 2000/4000 on the other good level 14 seeds (26, 4, 369, 556) and level 13 N=4 gave 25 at most.
 
 ### Records so far (HI, music off, level 10 unless noted; each proven in Mesen, every pill matched, g1 = g2 = g3 = 0)
 | Category | N | Pills | Kills | Points (last pill) | Player 2 held | Files |
